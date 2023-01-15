@@ -666,6 +666,16 @@ void syscall_handler(struct state *s)
 			break;
 #endif /* DISABLE_SYS_READLINK */
 
+        case 90:
+			/* truncate */
+			s->rax = sys_truncate((const char *)s->rdi, s->rsi);
+			break;
+
+		case 91:
+        	/* ftruncate */
+        	s->rax = sys_ftruncate(s->rdi, s->rsi);
+        	break;
+
 #ifndef DISABLE_SYS_UMASK
 		case 95:
 			/* umask */
